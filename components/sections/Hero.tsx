@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import { MapPin, Package, Clock } from "lucide-react";
 
 export function Hero() {
   return (
@@ -37,33 +38,91 @@ export function Hero() {
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative mx-auto w-full max-w-lg lg:max-w-none"
+            className="relative mx-auto w-full max-w-lg lg:max-w-none aspect-[4/3] rounded-2xl overflow-hidden bg-primary shadow-2xl flex items-center justify-center p-8"
           >
-            <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl relative">
-              <div className="absolute inset-0 bg-primary/10"></div>
-              {/* Using a placeholder styled div as a logistics visual since no image asset is provided */}
-              <div className="w-full h-full bg-primary flex items-center justify-center relative overflow-hidden">
-                <div className="absolute top-1/2 left-0 w-full h-0.5 bg-accent/40 shadow-[0_0_15px_rgba(249,115,22,0.5)]"></div>
-                <div className="absolute top-1/3 left-1/4 w-32 h-32 rounded-full border border-white/10"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full border border-white/5"></div>
-                <motion.div 
-                  animate={{ x: [0, 20, 0] }}
-                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                  className="z-10 bg-white p-6 rounded-xl shadow-xl border border-border/10 flex flex-col items-center gap-3"
-                >
-                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                    <div className="w-6 h-6 border-4 border-accent rounded-full border-t-transparent animate-spin"></div>
+            <div className="absolute inset-0 bg-primary-hover/50"></div>
+            
+            {/* Sophisticated SVG Network Route */}
+            <svg className="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 400 300">
+              <motion.path 
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatType: "reverse", repeatDelay: 1 }}
+                d="M 80 150 C 150 50, 250 50, 320 180" 
+                fill="none" 
+                stroke="var(--color-accent)" 
+                strokeWidth="2" 
+                strokeDasharray="4 4"
+              />
+              <motion.path 
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2.5, ease: "easeInOut", delay: 0.5, repeat: Infinity, repeatType: "reverse", repeatDelay: 1 }}
+                d="M 120 220 L 200 120 L 280 240" 
+                fill="none" 
+                stroke="rgba(255,255,255,0.3)" 
+                strokeWidth="2" 
+              />
+              
+              {/* Nodes */}
+              <circle cx="80" cy="150" r="5" fill="white" />
+              <text x="75" y="140" fill="white" fontSize="10" fontWeight="bold" textAnchor="end">MUMBAI</text>
+              
+              <circle cx="200" cy="120" r="5" fill="white" />
+              <text x="200" y="105" fill="white" fontSize="10" fontWeight="bold" textAnchor="middle">DELHI</text>
+              
+              <circle cx="320" cy="180" r="5" fill="var(--color-accent)" />
+              <circle cx="320" cy="180" r="10" fill="none" stroke="var(--color-accent)" className="animate-ping" style={{ transformOrigin: "320px 180px" }} />
+              <text x="325" y="170" fill="white" fontSize="10" fontWeight="bold" textAnchor="start">CHENNAI</text>
+              
+              <circle cx="280" cy="240" r="4" fill="rgba(255,255,255,0.5)" />
+              <text x="280" y="255" fill="rgba(255,255,255,0.5)" fontSize="10" textAnchor="middle">BENGALURU</text>
+              
+              <circle cx="120" cy="220" r="4" fill="rgba(255,255,255,0.5)" />
+              <text x="120" y="235" fill="rgba(255,255,255,0.5)" fontSize="10" textAnchor="middle">PUNE</text>
+            </svg>
+
+            {/* Floating Tracking Card */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className="relative z-10 bg-white/95 backdrop-blur shadow-2xl rounded-xl p-5 border border-white/20 w-64 translate-x-12 -translate-y-8"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                    <Package className="w-4 h-4 text-accent" />
                   </div>
-                  <div className="text-center">
-                    <p className="text-sm font-bold text-primary">Global Network</p>
-                    <p className="text-xs text-muted-foreground">Always moving</p>
+                  <div>
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Tracking ID</p>
+                    <p className="text-sm font-bold text-primary font-mono">CHW123456789</p>
                   </div>
-                </motion.div>
+                </div>
+                <div className="px-2 py-1 bg-success/10 text-success rounded text-[10px] font-bold uppercase">
+                  In Transit
+                </div>
               </div>
-            </div>
+              
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <MapPin className="w-4 h-4 text-muted-foreground" />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-muted-foreground uppercase">Destination</span>
+                    <span className="text-sm font-semibold">Chennai Hub</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Clock className="w-4 h-4 text-muted-foreground" />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-muted-foreground uppercase">ETA</span>
+                    <span className="text-sm font-semibold">Tomorrow, 10:00 AM</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </Container>

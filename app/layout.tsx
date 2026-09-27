@@ -16,6 +16,17 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Chowra Logistics & Couriers | Reliable Delivery & Logistics Solutions",
   description: "Chowra Logistics and Couriers provides domestic, international, express, e-commerce, freight and corporate logistics solutions.",
+  openGraph: {
+    title: "Chowra Logistics & Couriers",
+    description: "Reliable Delivery & Logistics Solutions across India and internationally.",
+    type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chowra Logistics & Couriers",
+    description: "Reliable Delivery & Logistics Solutions",
+  }
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

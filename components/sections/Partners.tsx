@@ -18,8 +18,8 @@ export function Partners() {
     <section className="py-20 bg-muted/30">
       <Container>
         <SectionHeading 
-          title="Trusted by Businesses" 
-          subtitle="Partnering with retail, e-commerce, and enterprise sectors to streamline supply chains. (Demo Content)"
+          title="Sample Customer Experiences" 
+          subtitle="Demonstration testimonials created for the technical assignment. No actual partnerships implied."
           alignment="center"
         />
 
@@ -40,8 +40,8 @@ export function Partners() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial) => (
             <Card key={testimonial.id} className="p-8 bg-white border-none shadow-sm flex flex-col relative">
-              <div className="absolute top-8 left-8 text-6xl text-accent/10 font-serif leading-none">"</div>
-              <div className="flex gap-1 mb-6 relative z-10">
+              <div className="absolute top-8 left-8 text-6xl text-accent/10 font-serif leading-none" aria-hidden="true">"</div>
+              <div className="flex gap-1 mb-6 relative z-10" aria-label="5 out of 5 stars">
                 {[1, 2, 3, 4, 5].map(star => (
                   <Star key={star} className="w-4 h-4 fill-accent text-accent" />
                 ))}

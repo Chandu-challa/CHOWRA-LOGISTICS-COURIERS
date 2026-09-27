@@ -1,8 +1,9 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Map, Globe2, Building2, MapPin } from "lucide-react";
+import { MapPin, Building2, Globe2 } from "lucide-react";
 
 export function NetworkCoverage() {
   const metrics = [
@@ -13,20 +14,7 @@ export function NetworkCoverage() {
 
   return (
     <section id="network" className="py-20 bg-primary text-white overflow-hidden relative">
-      {/* Abstract Network Background */}
-      <div className="absolute inset-0 opacity-10">
-        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M0 100 L20 40 L40 60 L60 20 L80 80 L100 0" stroke="white" strokeWidth="0.5" fill="none" />
-          <path d="M0 50 L30 80 L50 30 L70 90 L100 40" stroke="white" strokeWidth="0.5" fill="none" />
-          <circle cx="20" cy="40" r="1" fill="white" />
-          <circle cx="40" cy="60" r="1" fill="white" />
-          <circle cx="60" cy="20" r="1" fill="white" />
-          <circle cx="80" cy="80" r="1" fill="white" />
-          <circle cx="30" cy="80" r="1" fill="white" />
-          <circle cx="50" cy="30" r="1" fill="white" />
-          <circle cx="70" cy="90" r="1" fill="white" />
-        </svg>
-      </div>
+      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
 
       <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -51,26 +39,67 @@ export function NetworkCoverage() {
                 );
               })}
             </div>
+            <div className="mt-8">
+               <p className="text-[10px] text-white/30 uppercase tracking-widest">*Illustrative network metrics for technical demonstration.</p>
+            </div>
           </div>
           
-          <div className="relative aspect-square md:aspect-video lg:aspect-square bg-primary-light/50 border border-white/10 rounded-2xl p-6 overflow-hidden flex items-center justify-center">
-            {/* Visual placeholder for a map */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary via-primary-light to-primary"></div>
-            <Map className="w-32 h-32 text-accent/30 absolute" />
-            <div className="z-10 text-center space-y-4">
-              <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-sm font-medium">
-                Extensive Domestic Network
-              </div>
-              <div className="flex flex-wrap justify-center gap-2 max-w-sm">
-                {["Chennai", "Hyderabad", "Bengaluru", "Mumbai", "Delhi", "Pune", "Kolkata"].map(city => (
-                  <span key={city} className="px-3 py-1 bg-primary border border-white/10 rounded-md text-xs text-white/80">
-                    {city}
-                  </span>
-                ))}
-                <span className="px-3 py-1 bg-accent/20 border border-accent/50 rounded-md text-xs text-accent-light">
-                  + 3000 More
-                </span>
-              </div>
+          <div className="relative aspect-square md:aspect-video lg:aspect-square bg-primary-light/30 border border-white/10 rounded-2xl p-6 overflow-hidden flex items-center justify-center shadow-inner">
+            {/* India-focused Network SVG */}
+            <svg viewBox="0 0 400 400" className="w-full h-full opacity-90 max-w-[300px]">
+              {/* Lines / Routes */}
+              <motion.path 
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 3, ease: "linear", repeat: Infinity }}
+                d="M 180 120 L 120 220 L 180 320"
+                stroke="var(--color-accent)" strokeWidth="1.5" fill="none" strokeDasharray="4 4" 
+              />
+              <motion.path 
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2.5, ease: "linear", delay: 1, repeat: Infinity }}
+                d="M 180 120 L 280 200 L 180 320"
+                stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" fill="none" 
+              />
+              <path d="M 120 220 L 280 200" stroke="rgba(255,255,255,0.2)" strokeWidth="1" fill="none" />
+
+              {/* Nodes and Labels */}
+              <g className="translate-y-[-10px]">
+                <circle cx="180" cy="120" r="6" fill="var(--color-accent)" />
+                <circle cx="180" cy="120" r="12" fill="none" stroke="var(--color-accent)" className="animate-ping" style={{ transformOrigin: "180px 120px" }} />
+                <text x="170" y="115" fill="white" fontSize="12" fontWeight="bold" textAnchor="end">DELHI</text>
+              </g>
+
+              <g>
+                <circle cx="120" cy="220" r="5" fill="white" />
+                <text x="110" y="215" fill="white" fontSize="12" fontWeight="bold" textAnchor="end">MUMBAI</text>
+              </g>
+
+              <g>
+                <circle cx="280" cy="200" r="5" fill="white" />
+                <text x="290" y="195" fill="white" fontSize="12" fontWeight="bold" textAnchor="start">KOLKATA</text>
+              </g>
+              
+              <g className="translate-y-[10px]">
+                <circle cx="200" cy="260" r="4" fill="rgba(255,255,255,0.7)" />
+                <text x="190" y="255" fill="rgba(255,255,255,0.7)" fontSize="10" textAnchor="end">HYDERABAD</text>
+              </g>
+
+              <g className="translate-y-[20px]">
+                <circle cx="160" cy="290" r="4" fill="rgba(255,255,255,0.7)" />
+                <text x="150" y="285" fill="rgba(255,255,255,0.7)" fontSize="10" textAnchor="end">BENGALURU</text>
+              </g>
+
+              <g className="translate-y-[30px]">
+                <circle cx="180" cy="320" r="5" fill="white" />
+                <text x="190" y="325" fill="white" fontSize="12" fontWeight="bold" textAnchor="start">CHENNAI</text>
+              </g>
+            </svg>
+            
+            <div className="absolute bottom-6 right-6 text-right">
+              <p className="text-white font-bold text-sm">Domestic Network</p>
+              <p className="text-primary-foreground/60 text-xs">Sample Core Routes</p>
             </div>
           </div>
         </div>

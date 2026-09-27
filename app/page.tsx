@@ -1,6 +1,8 @@
 import { Hero } from "@/components/sections/Hero";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { ShipmentTracker } from "@/components/sections/ShipmentTracker";
+import { About } from "@/components/sections/About";
+import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Services } from "@/components/sections/Services";
 import { NetworkCoverage } from "@/components/sections/NetworkCoverage";
 import { QuoteCalculator } from "@/components/sections/QuoteCalculator";
@@ -15,8 +17,10 @@ export default function Home() {
       <Hero />
       <TrustStrip />
       <ShipmentTracker />
+      <HowItWorks />
       <Services />
       <NetworkCoverage />
+      <About />
       <QuoteCalculator />
       <WhyChooseUs />
       <Partners />
